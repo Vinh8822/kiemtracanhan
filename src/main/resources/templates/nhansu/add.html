@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <th:block th:replace="layout :: link-css"></th:block>
+  <title>Add Nhan Vien</title>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+  <h1>Add Nhan Vien</h1>
+  <form th:action="@{/nhansu/add}" th:object="${nhanvien}" method="post">
+    <div class="col-6 mb-3">
+      <label class="form-label" for="ma_nv">Ma Nhan Vien:</label>
+      <input class="form-control" type="text" th:field="*{ma_nv}" id="ma_nv">
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="ten_nv">Ten Nhan Vien:</label>
+      <input class="form-control" type="text" th:field="*{ten_nv}" id="ten_nv">
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="phai">Phai:</label>
+      <select class="form-control" th:field="*{phai}" id="phai">
+        <option value="">-- Select Giới tính --</option>
+        <option value="Nam">Nam</option>
+        <option value="Nữ">Nữ</option>
+      </select>
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="noi_sinh">Noi Sinh:</label>
+      <input class="form-control" type="text" th:field="*{noi_sinh}" id="noi_sinh">
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="luong">Luong:</label>
+      <input class="form-control" type="text" th:field="*{luong}" id="luong">
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="phongban">Phong Ban:</label>
+      <select class="form-control" th:field="*{phongBan.ma_phong}" id="phongban">
+        <option value="">-- Select Phong Ban --</option>
+        <option th:each="phongban : ${listPhongBan}" th:value="${phongban.ma_phong}" th:text="${phongban.ten_phong}"></option>
+      </select>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Save">
+  </form>
+  <br>
+  <a th:href="@{/nhansu}">Back to List</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+
+</body>
+</html>
